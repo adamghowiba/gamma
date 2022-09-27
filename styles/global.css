@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#__next {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif; */
+  font-family: 'Eudoxus Sans', sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: 100%;
+  padding-left: var(--space-sm);
+  padding-right: var(--space-sm);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+.seciton--sm {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+.section--lg {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+
+/* COLORED TEXT */
+.colored {
+  background: linear-gradient(50deg, #2b0aff, #e93abf 40%, #f658a8 46%, #f658a8 51%, #f99b52 91%, #f99b52);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.colored--text {
+  background-image: linear-gradient(50deg, #2b0aff, #ff5b8a 49%, #ff5b8a 53%, #ff5b8a 55%, #fba64b 77%, #f99b52);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

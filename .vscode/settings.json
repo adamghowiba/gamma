@@ -1,0 +1,4 @@
+{
+  "cssvar.files": ["./styles/root.css"],
+  "cssvar.extensions": ["jsx", "tsx"]
+}

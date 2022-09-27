@@ -1,0 +1,24 @@
+@font-face {
+  font-family: 'P22';
+  font-weight: normal;
+  font-style: normal;
+  src: url('/fonts/P22MackinacPro-Book.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'P22';
+  font-weight: 500;
+  font-style: normal;
+  src: url('/fonts/P22MackinacPro-Medium.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'P22';
+  font-weight: 600;
+  font-style: normal;
+  src: url('/fonts/P22MackinacPro-Bold.otf') format('opentype');
+}
+
+.tight {
+  letter-spacing: -1px;
+}
