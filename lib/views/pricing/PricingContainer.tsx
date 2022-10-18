@@ -21,7 +21,7 @@ const PricingCardStacked: FC<PricingCardStackedProps> = props => {
         yPercent: 0,
         stagger: 0.25,
         duration: 0.85,
-        ease: Circ.easeOut
+        ease: Circ.easeOut,
       }
     );
 
@@ -54,7 +54,7 @@ const PricingCardStacked: FC<PricingCardStackedProps> = props => {
 
               cardContainer.current[i] = e;
             }}
-            style={{ top: i * 20 }}
+            style={{ top: i * 20, width: `${100 - props.stackCount * 4 + i * 4}%` }}
           >
             {i === props.stackCount - 1 && (
               <div className="child" style={props.style}>
@@ -67,6 +67,8 @@ const PricingCardStacked: FC<PricingCardStackedProps> = props => {
       <style jsx>{`
         .card-container {
           position: relative;
+          display: flex;
+          justify-content: center;
         }
 
         .card {
