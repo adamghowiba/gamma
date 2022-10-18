@@ -3,7 +3,6 @@ import '../styles/typography.css';
 import '../styles/global.css';
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
-import { store } from '../lib/store/store';
 import Layout from '../lib/components/layout/layout';
 import Head from 'next/head';
 
@@ -15,9 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="stylesheet" href="https://stijndv.com/fonts/Eudoxus-Sans.css" />
       </Head>
 
-      <Provider store={store}>
-        <Component {...pageProps} />
-      </Provider>
+      <Component {...pageProps} />
     </Layout>
   );
 }

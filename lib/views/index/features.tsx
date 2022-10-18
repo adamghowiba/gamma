@@ -116,6 +116,11 @@ export const FEATURES: Feature[] = [
               flex-direction: column;
               gap: 2rem;
             }
+            .column {
+              display: flex;
+              flex-wrap: wrap;
+              gap: 1rem;
+            }
           `}
         </style>
       </div>

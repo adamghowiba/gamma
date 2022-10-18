@@ -60,7 +60,7 @@ const LandingFooter = () => {
           footer {
             position: relative;
             background-color: #1d0042;
-            height: 133vh;
+            height: 143vh;
             margin-top: 180px;
             padding-top: calc(140px + var(--space-xs));
           }
@@ -122,7 +122,8 @@ const LandingFooter = () => {
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            max-width: 70%;
+            max-width: 900px;
+            width: 100%;
           }
 
           .spinning-logo {
@@ -135,6 +136,9 @@ const LandingFooter = () => {
           @media only screen and (max-width: 725px) {
             footer {
               height: 100vh;
+            }
+            .content {
+              margin-top: -3rem;
             }
           }
         `}

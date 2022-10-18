@@ -1,4 +1,5 @@
 import { gsap } from 'gsap';
+// @ts-ignore
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js';
 import type { ScrollTrigger as ScrollTriggerType } from 'gsap/all';
 

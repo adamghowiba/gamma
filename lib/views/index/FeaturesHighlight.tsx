@@ -129,11 +129,6 @@ const FeaturesHighlight = () => {
             z-index: 10;
           }
 
-          :global(.column) {
-            display: flex;
-            gap: 12px;
-          }
-
           .videos {
             position: relative;
             width: 100%;
