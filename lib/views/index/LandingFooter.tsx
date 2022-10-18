@@ -67,7 +67,7 @@ const LandingFooter = () => {
 
           .footer-wrap {
             position: relative;
-            margin-top: 45rem;
+            margin-top: clamp(45rem, 55vw, 75rem);
             background-color: #1d0042;
           }
 
