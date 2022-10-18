@@ -34,13 +34,13 @@ export const FEATURES: Feature[] = [
     videoUrl: '/videos/polished_feature.mp4',
     body: (
       <>
-        <FeatureListItem icon="">
+        <FeatureListItem icon="🎉">
           <b>No more</b> slide masters or template lock-in
         </FeatureListItem>
-        <FeatureListItem icon="">
+        <FeatureListItem icon="🎨">
           Restyle your entire deck in just <b>one-click</b>
         </FeatureListItem>
-        <FeatureListItem icon="">
+        <FeatureListItem icon="⏰">
           Use a <b> flexible template</b> to work faster
         </FeatureListItem>
 
@@ -62,13 +62,13 @@ export const FEATURES: Feature[] = [
     videoUrl: '/videos/present_feature.mp4',
     body: (
       <>
-        <FeatureListItem icon="">
+        <FeatureListItem icon="💡">
           Get your point across <b>with present mode</b>
         </FeatureListItem>
-        <FeatureListItem icon="">
+        <FeatureListItem icon="🔎">
           Drill into the details using <b>nested cards</b>
         </FeatureListItem>
-        <FeatureListItem icon="">
+        <FeatureListItem icon="💬">
           Keep things concise with <b>footnotes</b>
         </FeatureListItem>
 
@@ -92,10 +92,10 @@ export const FEATURES: Feature[] = [
         <p>Move beyond walls of text and boring clipart. Embed anything:</p>
 
         <div className="column">
-          <FeatureListItem icon="">GIFs</FeatureListItem>
-          <FeatureListItem icon="">Videos</FeatureListItem>
-          <FeatureListItem icon="">Charts</FeatureListItem>
-          <FeatureListItem icon="">Websites</FeatureListItem>
+          <FeatureListItem icon="🌌">GIFs</FeatureListItem>
+          <FeatureListItem icon="📽️">Videos</FeatureListItem>
+          <FeatureListItem icon="📈">Charts</FeatureListItem>
+          <FeatureListItem icon="💻">Websites</FeatureListItem>
         </div>
         <p>Your audience can follow along live and keep exploring after the meeting.</p>
 

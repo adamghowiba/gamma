@@ -14,7 +14,8 @@ const Layout = (props: LayoutProps) => {
       <style jsx>
         {`
           .main {
-            height: 100%;
+            height: calc(100% - 64px);
+            
             width: 100%;
           }
         `}

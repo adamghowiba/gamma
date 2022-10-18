@@ -23,7 +23,12 @@ const LandingFooter = () => {
 
   return (
     <div className="footer-wrap">
-      <img className="spinning-logo" ref={floatingLogoElement} src="/image/footer_logo_spinning.gif" alt="Floating logo animation" />
+      <img
+        className="spinning-logo"
+        ref={floatingLogoElement}
+        src="/image/footer_logo_spinning.gif"
+        alt="Floating logo animation"
+      />
 
       <footer>
         <img className="top-image" src="/image/footer_balls.png" alt="Balls on geometric circles" />
@@ -125,6 +130,12 @@ const LandingFooter = () => {
             max-width: 200px;
             border: 3px solid #ffeef3;
             border-radius: 50%;
+          }
+
+          @media only screen and (max-width: 725px) {
+            footer {
+              height: 100vh;
+            }
           }
         `}
       </style>

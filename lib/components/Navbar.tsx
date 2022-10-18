@@ -6,11 +6,17 @@ const Navbar = () => {
   return (
     <>
       <nav>
-        <LocalIcon icon="logo" />
+        <div className="logo">
+          <Link href="/">
+            <div>
+              <LocalIcon icon="logo" />
+            </div>
+          </Link>
+        </div>
 
         <div className="links">
           <Link href="/pricing">Pricing</Link>
-          <Link href="/blog">Login</Link>
+          <Link href="/login">Login</Link>
           <Button size="small">Try for free</Button>
         </div>
       </nav>
@@ -26,6 +32,10 @@ const Navbar = () => {
           background-color: rgba(255, 248, 242, 0.66);
           backdrop-filter: blur(5px);
           padding: var(--space-3xs) var(--space-lg);
+        }
+
+        .logo:hover {
+          cursor: pointer;
         }
 
         .links {

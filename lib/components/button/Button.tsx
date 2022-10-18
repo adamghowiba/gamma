@@ -1,4 +1,4 @@
-import React, { FC, useRef } from 'react';
+import React, { FC, MouseEvent, MouseEventHandler, useRef } from 'react';
 import { gsap } from '../../utils/gsap';
 
 export interface ButtonProps {
@@ -17,23 +17,26 @@ const Button: FC<ButtonProps> = props => {
 
   let originalGradient: number = 40;
 
+
+  let movement = originalGradient;
   const handleMouseMove = (event: any) => {
     if (!buttonElement.current || props.color !== 'gradient') return;
     const target = event.target as HTMLDivElement;
     let offsetLeft = Math.floor(event.clientX - target.getBoundingClientRect().left);
 
+    let transitionAmount = originalGradient + offsetLeft * 0.12;
+
     gsap.to(buttonElement.current, {
-      background: `linear-gradient(50deg, #2b0aff, #e93abf ${
-        offsetLeft * 0.6
-      }%, #f658a8 46%, #f658a8 51%, #f99b52 91%, #f99b52)`,
-      stagger: 0.25,
+      background: `linear-gradient(50deg, #2b0aff, #e93abf ${transitionAmount}%, #f658a8 46%, #f658a8 51%, #f99b52 91%, #f99b52)`,
     });
   };
 
   const handleMouseLeave = (event: any) => {
     if (!buttonElement.current || props.color !== 'gradient') return;
+    movement = originalGradient;
 
     gsap.to(buttonElement.current, {
+      duration: 0.5,
       background: `linear-gradient(50deg, #2b0aff, #e93abf ${originalGradient}%, #f658a8 46%, #f658a8 51%, #f99b52 91%, #f99b52)`,
     });
   };

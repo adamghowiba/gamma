@@ -25,7 +25,6 @@ const FeaturesHighlight = () => {
         pin: videoWrapElement,
         start: 'top center-=100px',
         end: 'bottom center+=170px',
-        markers: true,
       });
 
       return pinScrollTrigger;

@@ -46,6 +46,10 @@ a {
   padding-bottom: 7rem;
 }
 
+p, span {
+  color: var(--color-text);
+}
+
 /* COLORED TEXT */
 .colored {
   background: linear-gradient(50deg, #2b0aff, #e93abf 40%, #f658a8 46%, #f658a8 51%, #f99b52 91%, #f99b52);

@@ -37,6 +37,7 @@ const ReviewCard: FC<ReviewCard> = props => {
           border-radius: 12px;
           background-color: white;
           box-shadow: 0 40px 86px 0 rgba(211, 187, 162, 0.34);
+          margin-top: var(--space-lg);
 
           &__body {
             line-height: 1.5em;
