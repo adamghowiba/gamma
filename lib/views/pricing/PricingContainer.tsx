@@ -1,5 +1,5 @@
 import React, { FC, CSSProperties, useRef } from 'react';
-import { gsap } from '../../utils/gsap';
+import { gsap, Circ } from '../../utils/gsap';
 import { useEffect } from 'react';
 
 interface PricingCardStackedProps {
@@ -19,8 +19,9 @@ const PricingCardStacked: FC<PricingCardStackedProps> = props => {
       {
         opacity: 1,
         yPercent: 0,
-        stagger: 0.55,
-        duration: 0.85
+        stagger: 0.25,
+        duration: 0.85,
+        ease: Circ.easeOut
       }
     );
 
