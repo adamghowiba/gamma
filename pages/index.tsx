@@ -9,6 +9,7 @@ import { ScrollTrigger } from '../lib/utils/gsap';
 
 const Home: NextPage = () => {
   let timeout: NodeJS.Timeout;
+  
   const refreshScrollTrigger = () => {
     if (timeout) clearTimeout(timeout);
     timeout = setTimeout(() => {
@@ -30,13 +31,13 @@ const Home: NextPage = () => {
         <Hero />
         <VideoPlayer />
 
-        <FloatingTitle topTitle="See Gamma" coloredTitle="in action" />
+        <section className="section--lg">
+          <FloatingTitle topTitle="See Gamma" coloredTitle="in action" />
+        </section>
 
         <FeaturesHighlight />
 
         <LandingFooter />
-
-        {/* <div className="filler"></div> */}
       </div>
 
       <style jsx>
@@ -49,6 +50,17 @@ const Home: NextPage = () => {
 
           .filler {
             height: 400vh;
+          }
+          .section--lg {
+            padding-top: var(--space-6xl);
+            padding-bottom: 0;
+          }
+
+          @media only screen and (max-width: 768px) {
+            .section--lg {
+              padding-top: var(--space-4xl);
+              padding-bottom: var(--space-4xl);
+            }
           }
         `}
       </style>

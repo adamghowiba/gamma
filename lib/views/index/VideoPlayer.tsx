@@ -41,7 +41,8 @@ const VideoPlayer = () => {
         <div className="wrapper" ref={videoWrapperElement}>
           <ReactPlayer
             loop={true}
-            url="https://www.youtube.com/watch?v=ENRK08JMg4Y&list=TLGGkoP88Eb2U5AyNjA5MjAyMg"
+            onReady={() => console.log('ready')}
+            url="https://www.youtube.com/embed/ENRK08JMg4Y"
             stopOnUnmount={true}
             playing={true}
             muted={true}
@@ -54,6 +55,9 @@ const VideoPlayer = () => {
           .video-container {
             width: min-content;
             margin: 0 auto;
+            width: 640px;
+            height: 360px;
+            background-color: #F7EDEA;
           }
 
           .wrapper {
@@ -68,6 +72,12 @@ const VideoPlayer = () => {
             overflow: hidden;
             margin: 0 auto;
             border-radius: 15px;
+          }
+
+          @media only screen and (max-width: 768px) {
+            .video-container {
+              display: none;
+            }
           }
         `}
       </style>

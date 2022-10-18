@@ -9,8 +9,7 @@ const Navbar = () => {
         <LocalIcon icon="logo" />
 
         <div className="links">
-          <Link href="/">Pricing</Link>
-          <Link href="/blog">Team</Link>
+          <Link href="/pricing">Pricing</Link>
           <Link href="/blog">Login</Link>
           <Button size="small">Try for free</Button>
         </div>
@@ -34,6 +33,15 @@ const Navbar = () => {
           align-items: center;
           font-size: var(--text-base);
           gap: var(--space-md);
+        }
+
+        @media only screen and (max-width: 768px) {
+          nav {
+            padding: var(--space-3xs) var(--space-xs);
+          }
+          .links {
+            display: none;
+          }
         }
       `}</style>
     </>

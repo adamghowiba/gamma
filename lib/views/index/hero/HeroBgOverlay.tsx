@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-const HeroBgOverlay = () => {
+interface HeroBgOverlayProps {
+  zIndex?: number;
+  height?: string;
+  position?: 'fixed' | 'absolute';
+}
+
+const HeroBgOverlay: FC<HeroBgOverlayProps> = ({ zIndex = 10, height = '200%', position = 'absolute' }) => {
   return (
     <>
-      <div className="circle-wrapper">
+      <div className="circle-wrapper" style={{ zIndex: zIndex, height, position }}>
         <div className="circle circle--1"></div>
         <div className="circle circle--2"></div>
         <div className="circle circle--3"></div>

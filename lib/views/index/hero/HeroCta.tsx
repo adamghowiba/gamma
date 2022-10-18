@@ -9,11 +9,11 @@ interface HeroCtaProps {
 }
 
 const HeroCta: FC<HeroCtaProps> = props => {
-  const alertStore = useAlertStore((state) => state);
-  
+  const alertStore = useAlertStore(state => state);
+
   const handleAddAlert = () => {
-    alertStore.addAlert({message: "WIld", type: "danger"});
-  }
+    alertStore.addAlert({ message: 'WIld', type: 'danger' });
+  };
 
   return (
     <>
@@ -82,6 +82,22 @@ const HeroCta: FC<HeroCtaProps> = props => {
             margin-bottom: var(--space-2xs);
             max-width: 22ch;
             font-size: 18px;
+          }
+        }
+
+        @media only screen and (max-width: 425px) {
+          .cta {
+            padding: var(--space-sm) calc(var(--space-2xs) + 2px);
+            padding-top: var(--space-lg);
+            gap: var(--space-2xs);
+
+            &__title {
+              font-size: 24px;
+            }
+
+            &__desc {
+              font-size: 16px;
+            }
           }
         }
       `}</style>

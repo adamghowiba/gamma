@@ -21,4 +21,5 @@ export const useAlertStore = create<AlertStore>(set => ({
     }),
 }));
 
+
 useAlertStore.subscribe(state => console.log(state.alerts));

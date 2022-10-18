@@ -28,7 +28,7 @@ const HeroTitle: FC<HeroTitle> = props => {
           z-index: 40;
 
           &__main {
-            font-size: var(--fs-xxxl);
+            font-size: var(--text-title);
             line-height: 1.2em;
             font-family: var(--font-p22);
           }

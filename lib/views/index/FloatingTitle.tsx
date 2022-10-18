@@ -8,7 +8,7 @@ interface FloatingTitle {
 const FloatingTitle: FC<FloatingTitle> = props => {
   return (
     <>
-      <section className="floating-title section--lg tight">
+      <section className="floating-title tight">
         <h1>See Gamma</h1>
         <h1 className="colored--text">in action</h1>
       </section>

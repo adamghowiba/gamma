@@ -38,7 +38,7 @@ const ContentBlock: FC<ContentBlockProps> = props => {
           &__title {
             line-height: 1.1em;
             font-size: var(--text-h1);
-            font-weight: 500;
+            font-weight: 600;
             font-family: P22, Impact, 'Gill Sans';
           }
         }

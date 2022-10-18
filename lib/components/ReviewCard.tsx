@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 export interface ReviewCard {
-  children: string;
+  children: any;
   name: string;
   position?: string;
   company: string;

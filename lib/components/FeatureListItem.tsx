@@ -28,8 +28,8 @@ const FeatureListItem: FC<FeatureListItemProps> = props => {
             }
 
             &__icon {
-              width:  42px;
-              height: 42px;
+              width:  40px;
+              height: 40px;
               display: flex;
               background-color: white;
               align-items: center;
@@ -43,7 +43,7 @@ const FeatureListItem: FC<FeatureListItemProps> = props => {
               display: flex;
               align-items: center;
               justify-content: center;
-              font-size: 150%;
+              font-size: 120%;
               position: relative;
               top: -2px;
             }

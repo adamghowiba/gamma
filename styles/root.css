@@ -44,5 +44,15 @@
     /* TYPOGRAPHY */
     --text-h1: 40px;
     --text-title: 48px;
+    --text-md: 20px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  :root {
+    /* TYPOGRAPHY */
+    --text-md: 18px;
+    --text-h1: 35px;
+    --text-title: 42px;
   }
 }

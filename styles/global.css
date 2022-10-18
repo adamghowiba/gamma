@@ -37,7 +37,7 @@ a {
   padding-top: 5rem;
   padding-bottom: 5rem;
 }
-.seciton--sm {
+.section--sm {
   padding-top: 3rem;
   padding-bottom: 3rem;
 }
@@ -45,7 +45,6 @@ a {
   padding-top: 7rem;
   padding-bottom: 7rem;
 }
-
 
 /* COLORED TEXT */
 .colored {
@@ -58,4 +57,26 @@ a {
   background-image: linear-gradient(50deg, #2b0aff, #ff5b8a 49%, #ff5b8a 53%, #ff5b8a 55%, #fba64b 77%, #f99b52);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    padding-left: calc(var(--space-xs) + 2px);
+    padding-right: calc(var(--space-xs) + 2px);
+  }
+  .section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  .section--lg {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .container {
+    padding-left: calc(var(--space-2xs) + 2px);
+    padding-right: calc(var(--space-2xs) + 2px);
+  }
 }

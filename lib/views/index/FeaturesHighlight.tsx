@@ -1,8 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { ReactElement, useEffect, useRef } from 'react';
 import ContentBlock from '../../components/ContentBlock';
 import FeatureListItem from '../../components/FeatureListItem';
 import ReviewCard from '../../components/ReviewCard';
 import { gsap } from '../../utils/gsap';
+import { ScrollTrigger } from '../../utils/gsap';
+import { FEATURES } from './features';
+import VideoContainer from './VideoContainer';
 
 export interface FeaturesHighlightProp {}
 
@@ -10,100 +13,109 @@ const FeaturesHighlight = () => {
   const scrollVideoElement = useRef<HTMLDivElement>(null);
   const scrollWrapElement = useRef<HTMLDivElement>(null);
 
-  const scrollAnimation = () => {
-    const timeline = gsap.timeline({
-      scrollTrigger: {
+  const setupVideoPin = () => {
+    const videoWrapElement = document.querySelectorAll('#video-wrap');
+
+    let pinScrollTrigger: ScrollTrigger;
+    const matchMedia = gsap.matchMedia();
+
+    matchMedia.add('(min-width: 768px)', () => {
+      pinScrollTrigger = ScrollTrigger.create({
         trigger: scrollWrapElement.current,
-        pin: scrollVideoElement.current,
+        pin: videoWrapElement,
         start: 'top center-=100px',
-        end: 'bottom center+=300px',
-      },
+        end: 'bottom center+=170px',
+        markers: true,
+      });
+
+      return pinScrollTrigger;
     });
 
     return () => {
-      timeline.scrollTrigger?.kill();
-      timeline.kill();
+      matchMedia.kill();
+      if (pinScrollTrigger) pinScrollTrigger.kill();
+    };
+  };
+
+  const scrollAnimation = () => {
+    const videos = gsap.utils.toArray<HTMLElement>(document.querySelectorAll('#video'));
+    const contentBlocks = gsap.utils.toArray<HTMLElement>(document.querySelectorAll('.content-blocks__block'));
+    const tweens: gsap.core.Tween[] = [];
+
+    const destoryPin = setupVideoPin();
+
+    const matchMedia = gsap.matchMedia();
+
+    matchMedia.add('(min-width: 768px)', () => {
+      gsap.set(videos, { opacity: '0' });
+
+      contentBlocks.forEach((elem, i) => {
+        const tween = gsap.to(videos[i], {
+          duration: 0,
+          scrollTrigger: {
+            trigger: elem,
+            end: 'bottom center',
+            start: 'top center',
+            onEnter: () => {
+              videos[i].style.opacity = '1';
+            },
+            onLeave: () => {
+              videos.forEach(video => (video.style.opacity = '0'));
+            },
+            onEnterBack: () => {
+              videos[i].style.opacity = '1';
+            },
+            onLeaveBack: () => {
+              videos.forEach(video => (video.style.opacity = '0'));
+            },
+          },
+        });
+
+        tweens.push(tween);
+      });
+    });
+
+    return () => {
+      destoryPin();
+      matchMedia.kill();
+      tweens.forEach(trigger => {
+        trigger.kill();
+        trigger.scrollTrigger?.kill();
+      });
     };
   };
 
   useEffect(() => {
-    // const destory = scrollAnimation();
+    const destory = scrollAnimation();
 
-    // return () => {
-    //   destory();
-    // };
+    return () => {
+      destory();
+    };
   }, []);
 
   return (
     <>
       <div className="scroll-wrap container" ref={scrollWrapElement}>
-
         <div className="content-blocks">
-          <div className="content-blocks__block">
-            <ContentBlock subtitle="Beautfiul and on-brand" title="Polished and ready in one click">
-              <p className="content-body">
-                Save hours spent formatting boxes to fit on a slide with <b>flexible cards </b> and
-                <b> fluid layouts </b>
-                that expand as you add new blocks.
-              </p>
+          {FEATURES.map((feature, i) => (
+            <div className="content-blocks__block" key={i}>
+              <div className="mobile-video">
+                <VideoContainer videoSrc={feature.videoUrl} videoType="video/mp4" />
+              </div>
 
-              <ReviewCard
-                company="Stotles"
-                name="John"
-                position="Co-founder & CEO"
-                profileSrc="/image/avatars/john_avatar.jpg"
-              >
-                Creating polished slides gets really tedious, especially aligning boxes and keeping things on-brand.
-                With Gamma, I can get things done so much faster.
-              </ReviewCard>
-            </ContentBlock>
-          </div>
-
-          <div className="content-blocks__block">
-            <ContentBlock subtitle="Beautfiul and on-brand" title="Polished and ready in one click">
-              <p className="content-body">
-                Save hours spent formatting boxes to fit on a slide with <b>flexible cards </b> and
-                <b> fluid layouts </b>
-                that expand as you add new blocks.
-              </p>
-
-              <FeatureListItem icon="🎉">
-                <b>No more</b> slide masters or template lock-in
-              </FeatureListItem>
-              <FeatureListItem icon="🎨">
-                Restyle your entire deck in just <b>one click</b>
-              </FeatureListItem>
-              <FeatureListItem icon="⏰">
-                Use a <b>flexible template</b> to work faster
-              </FeatureListItem>
-            </ContentBlock>
-          </div>
-
-          <div className="content-blocks__block">
-            <ContentBlock subtitle="Beautfiul and on-brand" title="Polished and ready in one click">
-              <p className="content-body">
-                Save hours spent formatting boxes to fit on a slide with <b>flexible cards </b> and
-                <b> fluid layouts </b>
-                that expand as you add new blocks.
-              </p>
-
-              <ReviewCard
-                company="Stotles"
-                name="John"
-                position="Co-founder & CEO"
-                profileSrc="/image/avatars/john_avatar.jpg"
-              >
-                Creating polished slides gets really tedious, especially aligning boxes and keeping things on-brand.
-                With Gamma, I can get things done so much faster.
-              </ReviewCard>
-            </ContentBlock>
-          </div>
+              <ContentBlock subtitle={feature.subtitle} title={feature.title}>
+                {feature.body}
+              </ContentBlock>
+            </div>
+          ))}
         </div>
 
-        <div className="video-wrap">
-          <div className="video-wrap__video" ref={scrollVideoElement}></div>
-          <div className="video-wrap__video"></div>
-          <div className="video-wrap__video"></div>
+        <div id="video-wrap" className="videos">
+          {FEATURES.map((feature, i) => (
+            <div className="videos__video" id="video" key={i}>
+              <VideoContainer videoSrc={feature.videoUrl} videoType="video/mp4" />
+            </div>
+          ))}
         </div>
       </div>
 
@@ -111,44 +123,76 @@ const FeaturesHighlight = () => {
         {`
           .scroll-wrap {
             margin-top: var(--space-2xl);
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-lg);
+            position: relative;
+            z-index: 10;
           }
 
-          .video-wrap {
+          :global(.column) {
+            display: flex;
+            gap: 12px;
+          }
+
+          .videos {
+            position: relative;
+            width: 100%;
+            height: 270px;
+
             &__video {
-              width: 400px;
-              height: 400px;
-              background-color: beige;
+              transition: opacity 0.15s linear;
+              height: 100%;
+              position: absolute;
+              width: 100%;
+              height: 100%;
             }
           }
 
           .content-blocks {
-            .content-body {
-              font-size: var(--text-md);
-              line-height: 1.6em;
-              margin-bottom: var(--space-sm);
-            }
-
-            &__block:nth-child(1) {
+            &__block {
+              max-width: 45ch;
+              display: flex;
               padding-top: 0;
+              padding-bottom: 60vh;
+              align-items: center;
             }
 
             &__block:last-child {
               padding-bottom: 0;
             }
 
-            &__block {
-              max-width: 45ch;
-              padding: 20vh 0;
-              display: flex;
-              align-items: center;
+            :global(p) {
+              font-size: 20px;
             }
           }
 
+          .mobile-video {
+            display: none;
+          }
+
           @media only screen and (max-width: 768px) {
+            .content-blocks {
+              &__block {
+                flex-direction: column;
+                gap: var(--space-lg);
+                max-width: none;
+                align-items: start;
+                padding-bottom: var(--space-5xl);
+              }
+            }
+
             .scroll-wrap {
-              flex-direction: column;
+              margin-top: 0;
+              grid-template-columns: 1fr;
+            }
+
+            .mobile-video {
+              display: block;
+            }
+
+            .videos {
+              display: none;
             }
           }
         `}

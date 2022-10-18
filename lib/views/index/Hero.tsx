@@ -9,11 +9,14 @@ const Hero: FC<HeroProps> = () => {
   return (
     <>
       <main>
-        <HeroBadge content="Slides are stuck in the past" />
-        <HeroTitle subtitle="The future is fast, flexible, and fun" />
+        <div className="container">
+          <HeroBadge content="Slides are stuck in the past" />
+          <HeroTitle subtitle="The future is fast, flexible, and fun" />
+        </div>
+
         <HeroBgOverlay />
 
-        <section className="hero-cta">
+        <section className="hero-cta container">
           <HeroCta
             title="The best of both worlds"
             body="It's the closest thing to time travel.
@@ -96,9 +99,18 @@ const Hero: FC<HeroProps> = () => {
 
           @media only screen and (max-width: 768px) {
             .hero-image {
-              &--left, &--right {
+              &--left,
+              &--right,
+              &--center {
                 display: none;
               }
+            }
+          }
+
+          @media only screen and (max-width: 425px) {
+            main {
+              height: auto;
+              padding-bottom: var(--space-lg);
             }
           }
         `}
