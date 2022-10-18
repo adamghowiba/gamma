@@ -23,16 +23,17 @@ const LandingFooter = () => {
 
   return (
     <div className="footer-wrap">
-      <img
-        className="spinning-logo"
-        ref={floatingLogoElement}
-        src="/image/footer_logo_spinning.gif"
-        alt="Floating logo animation"
-      />
+      <div className="top">
+        <img
+          className="spinning-logo"
+          ref={floatingLogoElement}
+          src="/image/footer_logo_spinning.gif"
+          alt="Floating logo animation"
+        />
+        <img className="top-image" src="/image/footer_balls.png" alt="Balls on geometric circles" />
+      </div>
 
       <footer>
-        <img className="top-image" src="/image/footer_balls.png" alt="Balls on geometric circles" />
-
         <div className="content">
           <div className="title tight">
             <h1>Open the door</h1>
@@ -60,13 +61,14 @@ const LandingFooter = () => {
           footer {
             position: relative;
             background-color: #1d0042;
-            height: 143vh;
-            margin-top: 180px;
-            padding-top: calc(140px + var(--space-xs));
+            //padding-top: calc(140px + var(--space-xs));
+            margin-top: clamp(-35rem, -60vw, 600px);
           }
 
           .footer-wrap {
-            margin-top: 30rem;
+            position: relative;
+            margin-top: 45rem;
+            background-color: #1d0042;
           }
 
           .content {
@@ -111,34 +113,56 @@ const LandingFooter = () => {
 
           .top-image {
             top: 0;
-            transform: translateY(-45%);
+            position: relative;
+            object-position: top;
+            overflow: hidden;
             width: 100%;
-            position: absolute;
             z-index: 10;
           }
 
+          .top {
+            position: relative;
+            top: 0;
+            width: 100%;
+            transform: translateY(-90%);
+          }
+
           .bottom-image {
-            position: absolute;
             bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
+            margin: 0 auto;
             max-width: 900px;
             width: 100%;
+            margin-top: var(--space-xl);
           }
 
           .spinning-logo {
+            top: 0;
             margin: 0 auto;
+            transform: translateY(-100%);
+            left: 50%;
             max-width: 200px;
             border: 3px solid #ffeef3;
             border-radius: 50%;
           }
 
           @media only screen and (max-width: 725px) {
-            footer {
-              height: 100vh;
-            }
             .content {
               margin-top: -3rem;
+            }
+            .footer-wrap {
+              margin-top: 40rem;
+            }
+          }
+
+          @media only screen and (max-width: 425px) {
+            .footer-wrap {
+              margin-top: 35rem;
+            }
+          }
+
+          @media only screen and (min-width: 1024px) {
+            .bottom-image {
+              max-width: 700px;
             }
           }
         `}

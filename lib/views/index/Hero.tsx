@@ -1,22 +1,59 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import HeroBgOverlay from './hero/HeroBgOverlay';
 import HeroCta from './hero/HeroCta';
+import { gsap } from '../../utils/gsap';
 import HeroTitle from './hero/HeroTitle';
 
 interface HeroProps {}
 
 const Hero: FC<HeroProps> = () => {
+  const titleRef = useRef<HTMLDivElement>(null);
+  const heroCta = useRef<HTMLDivElement>(null);
+  const centerSmokeImage = useRef<HTMLImageElement>(null);
+
+  const slideInAnimation = () => {
+    const contentTween = gsap.fromTo(
+      [titleRef.current, heroCta.current],
+      { yPercent: 30, opacity: 0 },
+      {
+        delay: 0.4,
+        yPercent: 0,
+        opacity: 1,
+        stagger: 0.65,
+        duration: 1.2,
+      }
+    );
+
+    const smokeTween = gsap.fromTo(
+      [centerSmokeImage.current],
+      { opacity: 0, yPercent: 10 },
+      { delay: 1, yPercent: 0, opacity: 0.65, duration: 1.5 }
+    );
+
+    return () => {
+      contentTween.kill();
+      smokeTween.kill();
+    };
+  };
+
+  useEffect(() => {
+    const destorySlideInAnimation = slideInAnimation();
+    return () => destorySlideInAnimation();
+  }, [heroCta, titleRef]);
+
   return (
     <>
       <main>
         <div className="container">
           <HeroBadge content="Slides are stuck in the past" />
-          <HeroTitle subtitle="The future is fast, flexible, and fun" />
+          <div className="hero-title" ref={titleRef}>
+            <HeroTitle subtitle="The future is fast, flexible, and fun" />
+          </div>
         </div>
 
         <HeroBgOverlay />
 
-        <section className="hero-cta container">
+        <section className="hero-cta container" ref={heroCta}>
           <HeroCta
             title="The best of both worlds"
             body="It's the closest thing to time travel.
@@ -30,9 +67,10 @@ const Hero: FC<HeroProps> = () => {
           alt="Astornught walking up portal"
         />
         <img
+          ref={centerSmokeImage}
           className="hero-image hero-image--center"
           src="/image/hero_middle_square.png"
-          alt="Astornught walking up portal"
+          alt="Colorful cube releasing colorful geometric smoke"
         />
 
         <img
@@ -45,13 +83,21 @@ const Hero: FC<HeroProps> = () => {
       <style jsx>
         {`
           .hero-cta {
+            position: relative;
+            z-index: 100;
             margin-top: var(--space-2xl);
+          }
+
+          .hero-title {
+            position: relative;
+            z-index: 100;
           }
 
           main {
             padding-top: var(--space-xs);
             width: 100%;
-            height: 94vh;
+            height: 100%;
+            margin-bottom: var(--space-6xl);
             background: (linear, left top, left bottom, from(#faf2e9), to(rgba(250, 242, 233, 0)));
           }
 
@@ -104,6 +150,10 @@ const Hero: FC<HeroProps> = () => {
               &--center {
                 display: none;
               }
+            }
+
+            main {
+              margin-bottom: 0;
             }
           }
 

@@ -172,7 +172,7 @@ const FeaturesHighlight = () => {
                 gap: var(--space-lg);
                 max-width: none;
                 align-items: start;
-                padding-bottom: var(--space-5xl);
+                padding-bottom: calc(var(--space-5xl) + var(--space-2xl));
               }
             }
 

@@ -15,9 +15,17 @@ const Navbar = () => {
         </div>
 
         <div className="links">
-          <Link href="/pricing">Pricing</Link>
-          <Link href="/login">Login</Link>
-          <Button size="small">Try for free</Button>
+          <div className="link">
+            <Link href="/pricing">Pricing</Link>
+          </div>
+          <div className="link">
+            <Link className="link links__mobile-hide" href="/login">
+              Login
+            </Link>
+          </div>
+          <Button size="small" href="/pricing">
+            Try for free
+          </Button>
         </div>
       </nav>
 
@@ -49,7 +57,9 @@ const Navbar = () => {
           nav {
             padding: var(--space-3xs) var(--space-xs);
           }
-          .links {
+
+          .link:nth-child(1),
+          .link:nth-child(2) {
             display: none;
           }
         }

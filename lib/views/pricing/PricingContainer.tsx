@@ -1,4 +1,6 @@
 import React, { FC, CSSProperties, useRef } from 'react';
+import { gsap } from '../../utils/gsap';
+import { useEffect } from 'react';
 
 interface PricingCardStackedProps {
   /* Number of stacks the card should have. */
@@ -8,11 +10,51 @@ interface PricingCardStackedProps {
 }
 
 const PricingCardStacked: FC<PricingCardStackedProps> = props => {
+  const cardContainer = useRef<HTMLDivElement[]>([]);
+
+  const cardFadeInAnimation = () => {
+    const tween = gsap.fromTo(
+      [...cardContainer.current],
+      { opacity: 0, yPercent: 20 },
+      {
+        opacity: 1,
+        yPercent: 0,
+        stagger: 0.55,
+        duration: 0.85
+      }
+    );
+
+    return () => {
+      tween.kill();
+    };
+  };
+
+  useEffect(() => {
+    const destoryFadeInAnimation = cardFadeInAnimation();
+
+    return () => {
+      destoryFadeInAnimation();
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log(cardContainer.current);
+  }, [cardContainer.current]);
+
   return (
     <>
-      <div className="card-container" style={{}}>
+      <div className="card-container">
         {Array.from({ length: props?.stackCount || 3 }).map((_, i) => (
-          <div className="card" key={i} style={{ top: i * 20 }}>
+          <div
+            className="card"
+            key={i}
+            ref={e => {
+              if (!e) return cardContainer;
+
+              cardContainer.current[i] = e;
+            }}
+            style={{ top: i * 20 }}
+          >
             {i === props.stackCount - 1 && (
               <div className="child" style={props.style}>
                 {props.children}

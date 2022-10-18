@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { FC, MouseEvent, MouseEventHandler, useRef } from 'react';
 import { gsap } from '../../utils/gsap';
 
@@ -8,6 +9,7 @@ export interface ButtonProps {
   onClick?: () => void;
   fullWidth?: boolean;
   borderRadius?: number;
+  href?: string;
 }
 
 const Button: FC<ButtonProps> = props => {
@@ -16,7 +18,6 @@ const Button: FC<ButtonProps> = props => {
   const buttonClasses = `color--${props.color} size--${props.size}`;
 
   let originalGradient: number = 40;
-
 
   let movement = originalGradient;
   const handleMouseMove = (event: any) => {
@@ -43,19 +44,53 @@ const Button: FC<ButtonProps> = props => {
 
   return (
     <>
-      <button
-        ref={buttonElement}
-        onClick={props.onClick}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        style={{ borderRadius: props.borderRadius }}
-        className={buttonClasses}
-      >
-        {props.children}
-      </button>
+      <div className="button-wrap">
+        {props.href && (
+          <div className="link">
+            <Link
+              href={props.href || ''}
+              className="link"
+              style={{ position: 'absolute', right: 0, backgroundColor: 'red' }}
+            >
+              <div className="link-inner"></div>
+            </Link>
+          </div>
+        )
+        }
+        <button
+          ref={buttonElement}
+          onClick={props.onClick}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          style={{ borderRadius: props.borderRadius }}
+          className={buttonClasses}
+        >
+          {props.children}
+        </button>
+      </div>
 
       <style jsx>{`
+        .button-wrap {
+          position: relative;
+          cursor: pointer;
+          width: max-content;
+
+          .link {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+
+            .link-inner {
+              position: absolute;
+              display: block;
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
         button {
+          position: relative;
           appearance: none;
           border-radius: 8px;
           padding: var(--space-2xs) var(--space-md);
@@ -70,7 +105,8 @@ const Button: FC<ButtonProps> = props => {
           }
 
           &--white {
-            border: 1px solid #f7eeea;
+            border: 1px solid #C2C2C2;
+            font-weight: 600;
             background-color: white;
             border-radius: 100px;
           }
